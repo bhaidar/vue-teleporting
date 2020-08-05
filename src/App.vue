@@ -1,10 +1,15 @@
 <template>
-  <Modal @close-modal="closeModal">
-    <template #body>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae expedita corrupti laudantium aperiam, doloremque explicabo ipsum earum dicta saepe delectus totam vitae ipsam doloribus et obcaecati facilis eius assumenda, cumque.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae expedita corrupti laudantium aperiam, doloremque explicabo ipsum earum dicta saepe delectus totam vitae ipsam doloribus et obcaecati facilis eius assumenda, cumque.</p>
-    </template>
-  </Modal>
+  <div>
+    <h1>Demonstrating Teleporting in Vue 3</h1>
+    <teleport to="#modal-area" :disabled="shouldClose" v-if="!shouldClose">
+      <Modal @close-modal="closeModal">
+        <template #body>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae expedita corrupti laudantium aperiam, doloremque explicabo ipsum earum dicta saepe delectus totam vitae ipsam doloribus et obcaecati facilis eius assumenda, cumque.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae expedita corrupti laudantium aperiam, doloremque explicabo ipsum earum dicta saepe delectus totam vitae ipsam doloribus et obcaecati facilis eius assumenda, cumque.</p>
+        </template>
+      </Modal>
+    </teleport>
+  </div>
 </template>
 
 <script>
@@ -15,21 +20,21 @@ export default {
   components: {
     Modal,
   },
+  data() {
+    return {
+      shouldClose: false,
+    };
+  },
   methods: {
     closeModal() {
-      alert("Clicked!");
+      this.shouldClose = true;
     },
   },
 };
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+h1 {
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
